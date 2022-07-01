@@ -1,0 +1,53 @@
+@import 'var';
+
+:host {
+  display: block;
+  margin: 0 auto;
+  margin-right: 0;
+  max-width: 100%;
+  width: 320px;
+
+  @media screen and (max-width: $smMax) {
+    width: 100%;
+    margin-top: 24px;
+  }
+}
+
+.input-group {
+  border-radius: 999px;
+  overflow: hidden;
+  background-color: $light;
+
+  &-text {
+    background-color: transparent;
+  }
+
+  &-text, .form-control {
+    border: none;
+    box-shadow: none;
+    outline: none;
+  }
+
+  .form-control {
+    padding-bottom: 10px;
+    padding-top: 10px;
+    padding-left: 24px;
+  }
+
+  & > :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
+
+    &.btn-search {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 46px;
+      background: radial-gradient(circle, rgba(232,1,1,1) 0%, rgba(186,0,0,1) 54%);
+      border-radius: 100%;
+      margin-left: 0;
+      color: $light;
+      margin-top: -2px;
+      margin-bottom: -2px;
+      margin-right: -2px;
+    }
+  }
+}

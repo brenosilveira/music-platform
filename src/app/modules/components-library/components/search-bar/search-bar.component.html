@@ -1,0 +1,29 @@
+<div class="input-group">
+  <input
+    type="text"
+    class="form-control"
+    placeholder="Buscar música"
+    aria-label="insira a musica"
+    aria-describedby="search-addon"
+    [formControl]="control"
+    (keyup.enter)="search()"
+  />
+
+  <button
+    *ngIf="searchText"
+    class="input-group-text"
+    aria-label="limpar campo de busca"
+    id="close-addon"
+    (click)="clearText()"
+  >
+    <fa-icon [icon]="closeIcon"></fa-icon>
+  </button>
+
+  <button
+    class="input-group-text btn-search"
+    aria-label="buscar"
+    (click)="search()"
+  >
+    <fa-icon [icon]="searchIcon"></fa-icon>
+  </button>
+</div>
