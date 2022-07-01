@@ -1,0 +1,11 @@
+@import 'var';
+
+:host {
+  margin-top: auto;
+}
+
+footer {
+  padding: 8px;
+  text-align: center;
+  background-color: $default;
+}
