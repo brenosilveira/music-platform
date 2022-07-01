@@ -1,0 +1,20 @@
+@import 'var';
+
+:host {
+  display: block;
+  height: 100%;
+
+  @media screen and (max-width: $smMax) {
+    padding-top: 74px;
+  }
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  height: inherit;
+}
+
+.content {
+  padding-top: 148px;
+}
