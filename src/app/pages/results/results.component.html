@@ -1,0 +1,70 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-lg-6">
+      <section>
+
+        <div class="row">
+          <div class="col">
+            <h1>Albuns</h1>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="grid">
+              <app-card *ngFor="let album of albums"
+              [title]="album.name"
+              [artist]="album.artist"
+              [imageSrc]="album.image[2]['#text']"
+              >
+              </app-card>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="col-12 col-lg-6">
+      <section>
+        <div class="row">
+          <div class="col">
+            <h1>Músicas</h1>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <app-list-item
+                *ngFor="let track of tracks"
+                [title]="track.name"
+                [listeners]="track.listeners | toLocaleString"
+                [artist]="track.artist"
+                >
+              </app-list-item>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <h1>Artistas</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="grid-artists grid">
+          <app-card
+            *ngFor="let artist of artists"
+            [title]="artist.name"
+            [listeners]="artist.listeners | toLocaleString"
+            iconName="star"
+            >
+          </app-card>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
