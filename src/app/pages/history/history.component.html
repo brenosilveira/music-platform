@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h1>Histórico</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <ul>
+        <li *ngFor="let item of history">
+          <fa-icon [icon]="searchIcon" class="searchIcon"></fa-icon>
+          <p>
+            <a routerLink="/search" [queryParams]="{term: item}">{{ item }}</a>
+          </p>
+          <button (click)="delete(item)" aria-label="remover item do histórico" title="Remover">
+            <fa-icon [icon]="closeIcon" ></fa-icon>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
