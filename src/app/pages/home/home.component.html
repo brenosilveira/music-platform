@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h1 class="title">Top Artistas</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="grid">
+        <app-card
+          *ngFor="let artist of topArtists"
+          [title]="artist.name"
+          [listeners]="artist.listeners | toLocaleString"
+          >
+        </app-card>
+      </div>
+    </div>
+  </div>
+</div>
+
+
