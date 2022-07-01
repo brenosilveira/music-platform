@@ -1,0 +1,47 @@
+@import 'var';
+
+:host {
+  width: 210px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  &:hover {
+    img {
+      border-radius: 20%;
+    }
+  }
+}
+
+fa-icon {
+  font-size: 24px;
+}
+
+img {
+  margin: 0 auto;
+  border-radius: 100%;
+  margin-bottom: 8px;
+  transition: all ease-in-out .4s;
+}
+
+.title {
+  font-size: 20px;
+  text-transform: capitalize;
+}
+
+.listeners, .artist {
+  opacity: .3;
+}
+
+.iconWrapper {
+  height: 60px;
+  width: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 16px;
+  border-radius: 100%;
+  background-color: $primary;
+}

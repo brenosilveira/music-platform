@@ -1,0 +1,22 @@
+<img
+  [src]="imageSrc"
+  *ngIf="imageSrc; else placeholder"
+  alt=""
+/>
+<ng-template #placeholder>
+  <div class="iconWrapper" *ngIf="iconName === 'star'">
+    <fa-icon [icon]="starIcon"></fa-icon>
+  </div>
+  <fa-icon [icon]="icon" *ngIf="iconName === 'music'"></fa-icon>
+</ng-template>
+
+<span class="title">
+  {{ title }}
+</span>
+
+<span class="artist" *ngIf="artist">
+  {{ artist }}
+</span>
+
+<span class="listeners" *ngIf="listeners"> {{ listeners }} listeners </span>
+
