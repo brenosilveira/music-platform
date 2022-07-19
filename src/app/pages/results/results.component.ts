@@ -1,6 +1,7 @@
+import { IApiService } from './../../shared/interface/IApiService';
 import { HistoryService } from './../../shared/services/history.service';
 import { ApiService } from 'src/app/shared/services/api.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Artist } from 'src/app/shared/models/Artist.model';
 import { Track } from 'src/app/shared/models/Track.model';
@@ -10,7 +11,13 @@ import { Subject, takeUntil } from 'rxjs';
 @Component({
   selector: 'app-results',
   templateUrl: './results.component.html',
-  styleUrls: ['./results.component.scss']
+  styleUrls: ['./results.component.scss'],
+  providers: [
+    {
+      provide: 'IApiService',
+      useClass: ApiService
+    }
+  ]
 })
 export class ResultsComponent implements OnInit {
 
@@ -21,7 +28,7 @@ export class ResultsComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private apiService: ApiService,
+    @Inject('IApiService') private apiService: IApiService,
     private historyService: HistoryService
   ){
     this.route.queryParams

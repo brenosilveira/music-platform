@@ -1,3 +1,4 @@
+import { IApiService } from './../interface/IApiService';
 import { TrackResponse } from './../models/TrackResponse.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -11,7 +12,7 @@ import { ArtistResponse } from '../models/ArtistResponse.model';
 @Injectable({
   providedIn: 'root'
 })
-export class ApiService {
+export class ApiService implements IApiService {
 
   apiHost = environment.API_HOST
   apiKey = environment.API_KEY
