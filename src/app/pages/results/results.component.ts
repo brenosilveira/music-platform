@@ -1,12 +1,13 @@
-import { IApiService } from './../../shared/interface/IApiService';
-import { HistoryService } from './../../shared/services/history.service';
-import { ApiService } from 'src/app/shared/services/api.service';
 import { Component, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Artist } from 'src/app/shared/models/Artist.model';
-import { Track } from 'src/app/shared/models/Track.model';
-import { Album } from 'src/app/shared/models/Album.model';
-import { Subject, takeUntil } from 'rxjs';
+import { Observable, Subject, takeUntil } from 'rxjs';
+import { AlbumResponse } from 'src/app/shared/models/AlbumResponse.model';
+import { ArtistResponse } from 'src/app/shared/models/ArtistResponse.model';
+import { SearchResponse } from 'src/app/shared/models/SearchResponse.model';
+import { TrackResponse } from 'src/app/shared/models/TrackResponse.model';
+import { ApiService } from 'src/app/shared/services/api.service';
+import { IApiService } from './../../shared/interface/IApiService';
+import { HistoryService } from './../../shared/services/history.service';
 
 @Component({
   selector: 'app-results',
@@ -21,9 +22,11 @@ import { Subject, takeUntil } from 'rxjs';
 })
 export class ResultsComponent implements OnInit {
 
-  artists: Artist[] = [];
-  albums: Album[] = [];
-  tracks: Track[] = [];
+  artists!: Observable<SearchResponse<ArtistResponse>>;
+  albums!: Observable<SearchResponse<AlbumResponse>>;
+  tracks!: Observable<SearchResponse<TrackResponse>>;
+
+  
   private unsubscribe = new Subject()
 
   constructor(
@@ -43,12 +46,12 @@ export class ResultsComponent implements OnInit {
     this.unsubscribe.complete()
   }
 
-  async refresh() {
+  refresh() {
     const param = this.route.snapshot.queryParams['term']
 
-    this.artists = await this.apiService.searchByArtist(param, 6).then(res => res.results.artistmatches.artist)
-    this.tracks = await this.apiService.searchByTrack(param).then(res => res.results.trackmatches.track)
-    this.albums = await this.apiService.searchByAlbum(param, 9).then(res => res.results.albummatches.album)
+    this.artists = this.apiService.searchByArtist(param, 6)
+    this.tracks = this.apiService.searchByTrack(param)
+    this.albums = this.apiService.searchByAlbum(param, 9)
 
     this.historyService.addTerm(param)
   }

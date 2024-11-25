@@ -1,7 +1,7 @@
-import { TopArtist } from './../../shared/models/TopArtist.model';
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { ApiService } from 'src/app/shared/services/api.service';
-import { Artist } from 'src/app/shared/models/Artist.model';
+import { TopArtist } from './../../shared/models/TopArtist.model';
 
 @Component({
   selector: 'app-home',
@@ -10,8 +10,7 @@ import { Artist } from 'src/app/shared/models/Artist.model';
 })
 export class HomeComponent implements OnInit {
 
-  topArtistsResponse?: TopArtist
-  topArtists: Artist[] = [];
+  topArtistsResponse?: Observable<TopArtist>;
 
   constructor( private apiService: ApiService) { }
 
@@ -19,10 +18,8 @@ export class HomeComponent implements OnInit {
     this.refresh()
   }
 
-  async refresh() {
-    this.topArtistsResponse = await this.apiService.getTopArtists()
-
-    this.topArtists = this.topArtistsResponse.artists.artist
+  refresh() {
+    this.topArtistsResponse = this.apiService.getTopArtists();
   }
 
 }

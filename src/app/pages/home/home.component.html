@@ -8,7 +8,7 @@
     <div class="col">
       <div class="grid">
         <app-card
-          *ngFor="let artist of topArtists"
+          *ngFor="let artist of (topArtistsResponse | async)?.artists?.artist"
           [title]="artist.name"
           [listeners]="artist.listeners | toLocaleString"
           >

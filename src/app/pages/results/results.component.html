@@ -11,7 +11,7 @@
         <div class="row">
           <div class="col">
             <div class="grid">
-              <app-card *ngFor="let album of albums"
+              <app-card *ngFor="let album of (albums | async)?.results?.albummatches?.album"
               [title]="album.name"
               [artist]="album.artist"
               [imageSrc]="album.image[2]['#text']"
@@ -33,7 +33,7 @@
         <div class="row">
           <div class="col">
             <app-list-item
-                *ngFor="let track of tracks"
+                *ngFor="let track of (tracks | async)?.results?.trackmatches?.track"
                 [title]="track.name"
                 [listeners]="track.listeners | toLocaleString"
                 [artist]="track.artist"
@@ -57,7 +57,7 @@
       <div class="col">
         <div class="grid-artists grid">
           <app-card
-            *ngFor="let artist of artists"
+            *ngFor="let artist of (artists | async)?.results?.artistmatches?.artist"
             [title]="artist.name"
             [listeners]="artist.listeners | toLocaleString"
             iconName="star"
